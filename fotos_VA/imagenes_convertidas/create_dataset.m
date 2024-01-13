@@ -1,4 +1,4 @@
-ruta = "direccion_prohibida";
+ruta = "peatones";
 
 rel_path = strcat(".\",ruta)
 % Declare how many images the dataset will have
@@ -36,11 +36,11 @@ for i = 1:n_images
     % Calculate the ROI
     width = abs(x(2) - x(1)); 
     height = abs(y(2) - y(1)); 
-    roi = [x(1) y(1) width height];
+    roi = {[x(1) y(1) width height]};
     rois = [rois; roi]; 
 
     % Add preview
-    final_images = vertcat(final_images, insertObjectAnnotation(current_image, 'rectangle', roi, 'ROI')); 
+    final_images = vertcat(final_images, insertObjectAnnotation(current_image, 'rectangle', roi{1}, 'ROI')); 
 
 end
 
