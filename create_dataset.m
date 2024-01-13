@@ -1,5 +1,9 @@
-% Declare how many images the dataset will have
-n_images = 4;
+% Set the path of the images and count them
+
+ruta = 'imagenes_jpg\peatones';
+rel_path = strcat('.\', ruta); 
+filesInfo = dir(fullfile(rel_path, '*.jpg')); 
+n_images = length(filesInfo);
 
 % Declare a cell in which the paths will be stored
 paths = {}; 
@@ -12,7 +16,7 @@ final_images = {};
 
 for i = 1:n_images
     % Read each image
-    path = strcat(num2str(i), '.jpg'); 
+    path = strcat('.\', ruta, '\', num2str(i), '.jpg'); 
     paths = vertcat(paths, path); 
     current_image = imread(path); 
 
@@ -26,11 +30,11 @@ for i = 1:n_images
     % Calculate the ROI
     width = abs(x(2) - x(1)); 
     height = abs(y(2) - y(1)); 
-    roi = [x(1) y(1) width height];
+    roi = {[x(1) y(1) width height]};
     rois = [rois; roi]; 
 
     % Add preview
-    final_images = vertcat(final_images, insertObjectAnnotation(current_image, 'rectangle', roi, 'ROI')); 
+    final_images = vertcat(final_images, insertObjectAnnotation(current_image, 'rectangle', roi{1}, 'ROI')); 
 
 end
 
@@ -41,4 +45,4 @@ montage(final_images);
 
 % Save the dataset
 dataset = table(paths, rois); 
-save('dataset.mat', 'dataset'); 
+save(strcat('.\', ruta, '\', 'dataset_peatones', '.mat'), 'dataset'); 
