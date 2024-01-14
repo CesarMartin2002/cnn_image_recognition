@@ -1,6 +1,6 @@
 % Set the path of the images and count them
-
-ruta = 'imagenes_jpg\ceda';
+clase = "peatones";
+ruta = strcat('imagenes_jpg\',clase);
 rel_path = strcat('.\', ruta); 
 filesInfo = dir(fullfile(rel_path, '*.jpg')); 
 n_images = length(filesInfo);
@@ -23,7 +23,7 @@ for i = 1:n_images
     % Show a window in which the corners of the ROI can be chosen
     figure; 
     imshow(current_image); 
-    title('Click on the first corner of ROI and then on the oppsite one'); 
+    title(strcat('Click on the first corner of ROI and then on the oppsite one. Image:  ',num2str(i),' out of ',num2str(n_images))); 
     [x, y] = ginput(2); 
     close;
 
@@ -44,5 +44,5 @@ title('Preview of the dataset');
 montage(final_images); 
 
 % Save the dataset
-dataset = table(paths, rois); 
-save(strcat('.\', ruta, '\', 'dataset_ceda', '.mat'), 'dataset'); 
+dataset = table(paths, rois, 'VariableNames', ["paths",clase]); 
+save(strcat('.\', ruta, '\', strcat('dataset_',clase), '.mat'), 'dataset'); 
