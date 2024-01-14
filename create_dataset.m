@@ -1,6 +1,6 @@
 % Set the path of the images and count them
 
-ruta = 'imagenes_jpg\peatones';
+ruta = 'imagenes_jpg\ceda';
 rel_path = strcat('.\', ruta); 
 filesInfo = dir(fullfile(rel_path, '*.jpg')); 
 n_images = length(filesInfo);
@@ -45,4 +45,4 @@ montage(final_images);
 
 % Save the dataset
 dataset = table(paths, rois); 
-save(strcat('.\', ruta, '\', 'dataset_peatones', '.mat'), 'dataset'); 
+save(strcat('.\', ruta, '\', 'dataset_ceda', '.mat'), 'dataset'); 
