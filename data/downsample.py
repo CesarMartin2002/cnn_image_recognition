@@ -26,7 +26,7 @@ def process_images(input_folder, output_folder, factor):
                 reduce_resolution(input_path, output_path, factor)
 
 if __name__ == "__main__":
-    input_folder = ".\imagenes_convertidas"
+    input_folder = "."
     output_folder = ".\imagenes_jpg"
     reduction_factor = 4
 
